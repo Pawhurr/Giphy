@@ -9,6 +9,7 @@ $(document).ready(function () {
 
         
         showbtn.addClass("btn btn-info");
+        showbtn.attr("id", "showbuttons");
         showbtn.attr("data-showvalue", tvshows[i]);
         showbtn.text(tvshows[i]);
         $("#buttonplace").append(showbtn);
@@ -60,10 +61,9 @@ $(document).ready(function () {
         var userShow = $("#show-input").val().trim();
         tvshows.push(userShow);
         createButtons();
-        tvbox();
     });
 
-    $(document).on("click", ".btn", displayShowGifs);
+    $(document).on("click", "#showbuttons", displayShowGifs);
 
     $(document).on("click", ".gif-image", function () {
         var state = $(this).attr("data-state");
