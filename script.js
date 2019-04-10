@@ -3,7 +3,7 @@ $(document).ready(function () {
 
     function createButtons() {
     $("#buttonplace").empty();
-    $("#add-show").empty();
+    $("#show-input").val("");
     for (var i = 0; i < tvshows.length; i++) {
         var showbtn = $("<button>");
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
     function displayShowGifs () {
         $("#imageplace").empty();
         $.ajax ({
-            url: "https://api.giphy.com/v1/gifs/search?q=" + ($(this).attr("data-showvalue")) + "&api_key=BDq2AOUJkOtzjyYBoCb9CGEzyzyO6KaJ&limit=10",
+            url: "https://api.giphy.com/v1/gifs/search?q=" + ($(this).attr("data-showvalue")) + "&api_key=BDq2AOUJkOtzjyYBoCb9CGEzyzyO6KaJ&limit=10&rating=pg",
             method: "GET"
         }).then(function (response) {
             for (var j = 0; j < 10; j++) {
@@ -29,6 +29,7 @@ $(document).ready(function () {
                 gifImg.attr("data-still", response.data[j].images.fixed_height_still.url);
                 gifImg.attr("data-animate", response.data[j].images.fixed_height.url);
                 gifImg.attr("data-state", "still");
+                gifImg.attr("border", "solid");
                 $("#imageplace").append(gifImg);
                 $("#imageplace").append("<p>Rating: " + response.data[j].rating + "</p>");
 
@@ -39,11 +40,27 @@ $(document).ready(function () {
 
     };
 
+    function tvbox() {
+        $.ajax({
+            url: "https://api.giphy.com/v1/gifs/random?q=television&api_key=BDq2AOUJkOtzjyYBoCb9CGEzyzyO6KaJ&limit=1&rating=pg",
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            var tvImg = $("<img>");
+            tvImg.addClass("tv-image");
+            tvImg.attr("src", response.data.images.fixed_height.url);
+            tvImg.attr("height", "200px");
+            tvImg.attr("width", "300px");
+            $("#randomGif").append(tvImg);
+        });
+    };
+
     $("#add-show").on("click", function (event) {
         event.preventDefault();
         var userShow = $("#show-input").val().trim();
         tvshows.push(userShow);
         createButtons();
+        tvbox();
     });
 
     $(document).on("click", ".btn", displayShowGifs);
@@ -55,11 +72,12 @@ $(document).ready(function () {
             $(this).attr("data-state", "animate");
         } else {
             $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "animate");
+            $(this).attr("data-state", "still");
         };
     });
 
     createButtons();
+    tvbox();
     
     
 

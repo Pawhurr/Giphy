@@ -6,27 +6,42 @@
     <title>Giphy App</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Monofett|Righteous" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
 
 
 </head>
 
-<body>
+<body background="images/furley_bg/furley_bg.png">
     <div class="container">
         <div class="row">
+            <img src="images/newTitle.png">
+        </div>
+        <div class="row">
             <div id="buttonplace"></div>
-            <form id="show-form">
+        </div>
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-4">
+                <form id="show-form" style="margin: 15px">
                     <label for="show-input">What's your favorite show?</label>
                     <input type="text" id="show-input"><br>
-                    <input id="add-show" type="submit" value="Add show!">
-                  </form>
-              
+                    <input id="add-show" type="submit" value="Add show!" class="btn btn-info">
+                </form>
+            </div>
         </div>
         <div class="row">
             <div id="imageplace"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4" id="randomGif">
+                <img id="television" src="images/tv.png" style="position: absolute; right: 15px; top: -15px">
+            </div>
+            <div class="col-4"></div>
         </div>
     </div>
     <script src="script.js"></script>
